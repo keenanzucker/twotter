@@ -1,0 +1,28 @@
+{
+  "name": "twotter",
+  "version": "1.0.0",
+  "description": "Twitter clone",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^4.4.2",
+    "morgan": "^1.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keenanzucker/twotter.git"
+  },
+  "author": "Keenan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keenanzucker/twotter/issues"
+  },
+  "homepage": "https://github.com/keenanzucker/twotter#readme"
+}
