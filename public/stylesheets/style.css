@@ -19,3 +19,7 @@ body {
 #hidden-template-li {
   display: none;
 }
+
+#hidden-hello {
+	visibility: hidden;
+}

@@ -22,6 +22,14 @@ routes.feed = function(req, res){
   });
 }
 
+routes.login = function(req, res){
+  
+  console.log(req.body.username);
+  
+
+
+}
+
 routes.newTwote = function(req, res){
 
   console.log(req.body.name);

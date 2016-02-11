@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 
 var user = mongoose.Schema({
-	name: String,
+	username: String,
 	twotes: [Object],
 	login: Boolean
 }, {collection: "users"});
