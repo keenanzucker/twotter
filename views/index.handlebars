@@ -49,7 +49,7 @@
 	<aside class="flex-side">
 		<ul id="user-list">
 			{{#each users}}
-			<li><p>{{username}}</p></li>
+			<li class="userName" id={{this._id}}><p>{{username}}</p></li>
 			{{/each}}
 			<li id="hidden-template-user">
 				<p><span class="username">user numba 1</span></p>

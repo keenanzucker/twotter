@@ -16,7 +16,7 @@ routes.feed = function(req, res){
   Twote.find().sort({time:-1}).exec(function(err, twotes){
     if (err) console.log(err);
     else {
-      User.find().exec(function(err, users){
+      User.find().sort({time:-1}).exec(function(err, users){
         if (err) console.log(err)
         else {
           res.render('index', {twotes: twotes, users: users});
@@ -29,28 +29,57 @@ routes.feed = function(req, res){
 
 routes.login = function(req, res){
   
-  console.log(req.body.username);
+  username = req.body.username;
+  console.log(username);
 
-  var user = new User({
-    username: req.body.username
-  });
+  User.findOne({username: username}, function(err, user){
 
-  user.save(function(err, val){
-    if (err) console.log(err);
+    if(err) console.log(err);
+    if (!user) {
+      var user = new User({
+        username: username,
+        logged: true
+
+      });
+
+      user.save(function(err, val){
+        if (err) console.log(err);
+        else {
+          console.log("User Logged in: " + username);
+          res.send(val);
+        }
+      });
+    }
     else {
-      console.log("User Logged in: " + req.body.username);
-      res.send(val);
+      console.log("User already in Database!");
+      res.send({logged: false});
     }
   });
+
+
+
+  // var user = new User({
+  //   username: req.body.username
+  // });
+
+  // user.save(function(err, val){
+  //   if (err) console.log(err);
+  //   else {
+  //     console.log("User Logged in: " + req.body.username);
+  //     res.send(val);
+  //   }
+  // });
 }
 
 routes.newTwote = function(req, res){
 
   console.log(req.body.text);
+  text = req.body.text;
+  author = req.body.author;
 
   var twote = new Twote({
-    text: req.body.text,
-    author: req.body.author
+    text: text,
+    author: author
   });
   console.log(twote);
   twote.save(function(err, val){
