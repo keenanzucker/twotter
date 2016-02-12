@@ -12,31 +12,48 @@
     </ul>
   </div>
 </nav> -->
-<h1>TWOTTER</h1>
+<div class="flex-container">
+	<header>
+		<h1>TWOTTER</h1>
+		<h2 id="hidden-hello">Hello, <span id="username-heading">JIMOTHY</span></h2>
+	</header>
+	
 
-<h2 id="hidden-hello">Hello, <span id="username-heading">JIMOTHY</span></h2>
+	<div class="flex-form">
+		<form id="login-form" action="login" method=POST>
+			<input type="text" name="username" placeholder="username">
+			<input type="submit" value="LOGIN">
+			<input id="logout" type="button" value="LOGOUT">
+			
+		</form>
+	</div>
+	<div id="add-twote">
+		<form action="new" method=POST>
+			<input type="text" name="text" placeholder="write yo twote">
+			<input type="submit" value="TWOTE!">
+		</form>
+		<br>
+		<br>
+	</div>
+	<div class="flex-list">
+		<ul id="twote-list">
+			{{#each twotes}}
+			<li><p>{{text}} -- {{author}}</p></li>
+			{{/each}}
+		  	<li id="hidden-template-li">
+		    <p><span class="twote">This is a pretty sweet twote</span> -- <span class="author">author</span></p>
+		  </li>
+		</ul>
+	</div>
 
-<form id="login-form" action="login" method=POST>
-	<input type="text" name="username" placeholder="username">
-	<input type="submit" value="LOGIN">
-</form>
-
-<br>
-<br>
-
-<form id="add-twote" action="new" method=POST>
-	<input type="text" name="name" placeholder="write yo twote">
-	<input type="submit" value="TWOTE!">
-</form>
-<br>
-<br>
-
-<ul id="twote-list">
-	{{#each twotes}}
-	<li><p>{{name}}</p></li>
-	{{/each}}
-  	<li id="hidden-template-li">
-    <p><span class="twote">This is a pretty sweet twote</span></p>
-  </li>
-</ul>
-<br>
+	<aside class="flex-side">
+		<ul id="user-list">
+			{{#each users}}
+			<li><p>{{username}}</p></li>
+			{{/each}}
+			<li id="hidden-template-user">
+				<p><span class="username">user numba 1</span></p>
+			</li>
+		</ul>
+	</aside>
+</div>

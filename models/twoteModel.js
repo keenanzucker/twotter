@@ -2,8 +2,9 @@ var mongoose = require("mongoose");
 
 var twote = mongoose.Schema({
 	
-	name: String,
-	time : { type : Date, default: Date.now }
+	text: String,
+	time : { type : Date, default: Date.now },
+	author: String
 
 }, {collection: "twotes"});
 

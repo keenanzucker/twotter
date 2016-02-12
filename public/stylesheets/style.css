@@ -20,6 +20,70 @@ body {
   display: none;
 }
 
+#hidden-template-user {
+  display: none;
+}
+
 #hidden-hello {
 	visibility: hidden;
+}
+
+#add-twote {
+  display: none;
+  order: 2;
+  width: 100%;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+}
+
+#logout {
+  width: 100px;
+}
+
+div {
+  padding: 3%;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  background-color: lightgrey;
+}
+
+
+
+.flex-container > * {
+  padding: 10px;
+  margin: 10px;
+  /*flex: 1 100%;*/
+}
+
+header{
+  order: 1;
+}
+
+.flex-form {
+  order: 2;
+  width: 100%;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+}
+
+.flex-list {
+  width: 70%;
+  order: 3;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+}
+
+.flex-side{
+  width: 20%;
+  order: 4;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  justify-content: flex-end;
 }
