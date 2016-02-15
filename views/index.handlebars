@@ -38,7 +38,7 @@
 	<div class="flex-list">
 		<ul id="twote-list">
 			{{#each twotes}}
-			<li><p>{{text}} -- {{author}}</p></li>
+			<li id={{this._id}} class={{author}}><p>{{text}} -- {{author}}</p></li>
 			{{/each}}
 		  	<li id="hidden-template-li">
 		    <p><span class="twote">This is a pretty sweet twote</span> -- <span class="author">author</span></p>

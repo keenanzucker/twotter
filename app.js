@@ -21,9 +21,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', index.home);
 app.get('/feed', index.feed);
-app.post('/new', index.newTwote);
 
+app.post('/new', index.newTwote);
 app.post('/login', index.login);
+app.post('/highlight', index.highlight);
 
 mongoose.connect('mongodb://keenan:olinjs@ds033217.mongolab.com:33217/twotter', function(err){
 	if(err) console.log(err);

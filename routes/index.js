@@ -27,6 +27,23 @@ routes.feed = function(req, res){
   });
 }
 
+routes.highlight =function(req, res){
+
+  clickId = req.body.id;
+
+  // console.log('YOU CLICKED ON: ', clickId);
+
+  User.findById(clickId, function(err, found){
+    if (err) console.log(err);
+    else {
+
+      console.log('YOU CLICKED ON', found.username);
+      res.send(found);
+    }
+  });
+
+}
+
 routes.login = function(req, res){
   
   username = req.body.username;
@@ -55,20 +72,6 @@ routes.login = function(req, res){
       res.send({logged: false});
     }
   });
-
-
-
-  // var user = new User({
-  //   username: req.body.username
-  // });
-
-  // user.save(function(err, val){
-  //   if (err) console.log(err);
-  //   else {
-  //     console.log("User Logged in: " + req.body.username);
-  //     res.send(val);
-  //   }
-  // });
 }
 
 routes.newTwote = function(req, res){
@@ -82,6 +85,7 @@ routes.newTwote = function(req, res){
     author: author
   });
   console.log(twote);
+  
   twote.save(function(err, val){
     if (err) console.log(err);
     else{

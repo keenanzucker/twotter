@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 var user = mongoose.Schema({
 	username: String,
-	twotes: [Object],
+	// twotes: [{type:Schema.ObjectId, ref: 'twotes'}],
 	time : { type : Date, default: Date.now },
 	logged: Boolean
 }, {collection: "users"});
