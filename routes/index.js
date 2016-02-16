@@ -6,8 +6,12 @@ var Twote = require('../models/twoteModel');
 var routes = {};
 
 routes.home = function(req, res){
-
   res.render("index");
+}
+
+routes.loginPage = function(req, res){
+
+  res.render('login');
 
 }
 
@@ -20,7 +24,8 @@ routes.feed = function(req, res){
         if (err) console.log(err)
         else {
           res.render('index', {twotes: twotes, users: users});
-          console.log("Showing Twotes and Users!")
+          console.log("Showing Twotes and Users!");
+          console.log(req.user);
         }
       });
     }
@@ -31,8 +36,6 @@ routes.highlight =function(req, res){
 
   clickId = req.body.id;
 
-  // console.log('YOU CLICKED ON: ', clickId);
-
   User.findById(clickId, function(err, found){
     if (err) console.log(err);
     else {
@@ -41,7 +44,6 @@ routes.highlight =function(req, res){
       res.send(found);
     }
   });
-
 }
 
 routes.login = function(req, res){
@@ -49,6 +51,11 @@ routes.login = function(req, res){
   username = req.body.username;
   console.log(username);
 
+  if (username == ''){
+    console.log("NOT VALID");
+    res.status(500);
+    res.send("No username given");
+  } else {
   User.findOne({username: username}, function(err, user){
 
     if(err) console.log(err);
@@ -72,6 +79,7 @@ routes.login = function(req, res){
       res.send({logged: false});
     }
   });
+ }
 }
 
 routes.newTwote = function(req, res){
@@ -93,6 +101,15 @@ routes.newTwote = function(req, res){
       res.send(val);
     }
   });
+}
+
+routes.ensureAuthenticated = function(req, res) {
+
+  res.send({username:req.user});
+};
+
+routes.failure = function(req, res){
+  res.render('failure');
 }
 
 module.exports = routes;
