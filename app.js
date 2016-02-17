@@ -7,9 +7,9 @@ var exphbs  = require('express-handlebars');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
 var User = require('./models/userModel');
-
 
 var auth = require('./auth');
 var index = require('./routes/index');
@@ -29,8 +29,6 @@ passport.use(new FacebookStrategy({
 
   	if (username == ''){
     	console.log("NOT VALID");
-    	// res.status(500);
-    	// res.send("No username given");
   	} else {
   		User.findOne({username: username}, function(err, user){
 
@@ -40,23 +38,53 @@ passport.use(new FacebookStrategy({
         	username: username,
         	logged: true
      	});
-
       	user.save(function(err, val){
-        if (err) console.log(err);
-        else {
-          console.log("User Logged in: " + username);
-          // res.send(val);
-        }
-      });
+
+        	if (err) console.log(err);
+        	else {
+          		console.log("User Logged in: " + username);
+       		 }
+      	});
     }
     else {
       console.log("User already in Database!");
-      // res.send({logged: false});
     }
   });
  }
     done(null, profile.displayName);
   }
+));
+
+
+passport.use(new LocalStrategy(
+	function(username, password, done){
+		  	if (username == ''){
+    	console.log("NOT VALID");
+  	} else {
+  		User.findOne({username: username}, function(err, user){
+
+    	if(err) console.log(err);
+    	if (!user) {
+      		var user = new User({
+        	username: username,
+        	password: password,
+        	logged: true
+     	});
+      	user.save(function(err, val){
+
+        	if (err) console.log(err);
+        	else {
+          		console.log("User Logged in: " + username);
+       		 }
+      	});
+    }
+    else {
+      console.log("User already in Database!");
+    }
+  });
+ }
+    done(null, username);
+	}
 ));
 
 var app = express();
@@ -91,14 +119,18 @@ app.get('/auth/facebook/callback',
                                       failureRedirect: '/' })
 );
 
+app.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/feed');
+  });
+
 app.get('/', index.loginPage);
 app.get('/feed', index.feed);
 app.post('/new', index.newTwote);
-app.post('/login', index.login);
 app.post('/highlight', index.highlight);
 app.get('/user', index.ensureAuthenticated);
-app.get('/failure', index.failure);
-
+app.get('/logout', index.logout);
 
 mongoose.connect('mongodb://keenan:olinjs@ds033217.mongolab.com:33217/twotter', function(err){
 	if(err) console.log(err);

@@ -17,13 +17,15 @@ routes.loginPage = function(req, res){
 
 routes.feed = function(req, res){
 
+  console.log('FROM THE SERVER: ', req.user);
+
   Twote.find().sort({time:-1}).exec(function(err, twotes){
     if (err) console.log(err);
     else {
       User.find().sort({time:-1}).exec(function(err, users){
         if (err) console.log(err)
         else {
-          res.render('index', {twotes: twotes, users: users});
+          res.render('index', {twotes: twotes, users: users, currentUser: req.user});
           console.log("Showing Twotes and Users!");
           console.log(req.user);
         }
@@ -46,40 +48,11 @@ routes.highlight =function(req, res){
   });
 }
 
-routes.login = function(req, res){
-  
-  username = req.body.username;
-  console.log(username);
-
-  if (username == ''){
-    console.log("NOT VALID");
-    res.status(500);
-    res.send("No username given");
-  } else {
-  User.findOne({username: username}, function(err, user){
-
-    if(err) console.log(err);
-    if (!user) {
-      var user = new User({
-        username: username,
-        logged: true
-
-      });
-
-      user.save(function(err, val){
-        if (err) console.log(err);
-        else {
-          console.log("User Logged in: " + username);
-          res.send(val);
-        }
-      });
-    }
-    else {
-      console.log("User already in Database!");
-      res.send({logged: false});
-    }
-  });
- }
+routes.logout = function(req,res)
+{
+  console.log("something");
+  req.logout();
+  res.redirect('/');
 }
 
 routes.newTwote = function(req, res){
@@ -102,6 +75,7 @@ routes.newTwote = function(req, res){
     }
   });
 }
+
 
 routes.ensureAuthenticated = function(req, res) {
 

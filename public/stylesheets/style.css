@@ -66,7 +66,7 @@ header{
   
 }
 #add-twote {
-  display: none;
+  /*display: none;*/
   order: 3;
   width: 100%;
 }
