@@ -21,11 +21,10 @@ passport.use(new FacebookStrategy({
   },
 
   function(accessToken, refreshToken, profile, done) {
-  	// DO THE STUFF LIKE SAVING USERS
-
   	console.log('FB NAME', profile.displayName);
-
   	var username = profile.displayName;
+  	console.log("NEW NAME:", username.split(' ').slice(0, -1).join(' '));
+  	username = username.split(' ').slice(0, -1).join(' ');
 
   	if (username == ''){
     	console.log("NOT VALID");
@@ -51,16 +50,19 @@ passport.use(new FacebookStrategy({
     }
   });
  }
-    done(null, profile.displayName);
+    done(null, username);
   }
 ));
 
 
 passport.use(new LocalStrategy(
 	function(username, password, done){
-		  	if (username == ''){
-    	console.log("NOT VALID");
+
+
+		if (username == ''){
+    		console.log("NOT VALID");
   	} else {
+
   		User.findOne({username: username}, function(err, user){
 
     	if(err) console.log(err);
@@ -131,6 +133,7 @@ app.post('/new', index.newTwote);
 app.post('/highlight', index.highlight);
 app.get('/user', index.ensureAuthenticated);
 app.get('/logout', index.logout);
+app.post('/remove', index.remove);
 
 mongoose.connect('mongodb://keenan:olinjs@ds033217.mongolab.com:33217/twotter', function(err){
 	if(err) console.log(err);

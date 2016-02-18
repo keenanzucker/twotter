@@ -19,6 +19,11 @@ routes.feed = function(req, res){
 
   console.log('FROM THE SERVER: ', req.user);
 
+  // if(!req.user)
+  // {
+  //   res.redirect('/');
+  // }
+
   Twote.find().sort({time:-1}).exec(function(err, twotes){
     if (err) console.log(err);
     else {
@@ -71,6 +76,17 @@ routes.newTwote = function(req, res){
     if (err) console.log(err);
     else{
       console.log("New Twote: " + req.body.text + " By:" + req.body.author);
+      res.send(val);
+    }
+  });
+}
+
+routes.remove = function(req, res){
+  console.log(req.body.idToDelete)
+  Twote.findOne({'_id':req.body.idToDelete}).remove(function(err, val){
+    if (err) console.log(err);
+    else{
+      console.log("Twote with id " + req.body.idToDelete + " deleted.");
       res.send(val);
     }
   });
