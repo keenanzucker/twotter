@@ -1,8 +1,3 @@
-$(document).ready(function(){
-
-
-});
-
 var $twoteForm = $('#add-twote');
 var $loginForm = $('#login-form');
 var $twoteList = $('#twote-list');
@@ -23,13 +18,24 @@ $('#logout').click(function() {
 $removeButton.click(function(event){
 
 	event.preventDefault();
-	// debugger;
+	var current = $("#username-heading").text();
+
+	console.log('CURRENT: ' + current);
+
 	var twotteId = $(this).parent().attr('id');
+	var twoteUser = $(this).parent().attr('class');
 	var buttonToRemove = $(this);
 
-	$("#"+twotteId).remove();
-	buttonToRemove.remove();
-	$.post("/remove", {idToDelete:twotteId})
+	console.log("TO REMOVE: " + twoteUser);
+
+	if (twoteUser != current){
+		alert("You can only delete your own twotes!");
+	} else {
+		$("#"+twotteId).remove();
+		buttonToRemove.remove();
+		$.post("/remove", {idToDelete:twotteId})
+	}
+
 
 
 });

@@ -1,29 +1,24 @@
-<!-- <nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">TWOTTER</a>
+      <a class="navbar-brand twotter-title" href="#">TWOTTER</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">FEED</a></li>
-    </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">LOGIN</a></li>
-       <li><a href="#">LOGOUT</a></li>
+       <li><form id="logout-form" action="/logout" method="GET">
+		<button class='button' type="submit">LOGOUT</button>
+		</form></li>
     </ul>
   </div>
-</nav> -->
+</nav>
+
 <div class="flex-container">
 	<header>
-		<h1>TWOTTER</h1>
 		<h2>Hello: <span id="username-heading">{{this.currentUser}}</span></h2>
-		<form id="logout-form" action="/logout" method="GET">
-		<button type="submit">Logout</button>
-		</form>
 	</header>
 	
 	<div id="add-twote">
 		<form action="new" method=POST>
-			<input type="text" name="text" placeholder="write yo twote">
+			<input type="text" name="text" placeholder=" Wrote a Twote!">
 			<input type="submit" value="TWOTE!">
 		</form>
 		<br>
