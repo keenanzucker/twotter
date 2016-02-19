@@ -36,9 +36,6 @@ $removeButton.click(function(event){
 		buttonToRemove.remove();
 		$.post("/remove", {idToDelete:twotteId})
 	}
-
-
-
 });
 
 $userLi.hover(function(){

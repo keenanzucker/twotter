@@ -19,11 +19,6 @@ routes.feed = function(req, res){
 
   console.log('FROM THE SERVER: ', req.user);
 
-  // if(!req.user)
-  // {
-  //   res.redirect('/');
-  // }
-
   Twote.find().sort({time:-1}).exec(function(err, twotes){
     if (err) console.log(err);
     else {
