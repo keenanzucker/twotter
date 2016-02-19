@@ -21,10 +21,11 @@ $removeButton.click(function(event){
 	var current = $("#username-heading").text();
 
 	console.log('CURRENT: ' + current);
+	console.log($(this));
 
-	var twotteId = $(this).parent().attr('id');
-	var twoteUser = $(this).parent().attr('class');
-	var buttonToRemove = $(this);
+	var twotteId = $(this).parent().parent().attr('id');
+	var twoteUser = $(this).parent().parent().attr('class');
+	var buttonToRemove = $(this).parent();
 
 	console.log("TO REMOVE: " + twoteUser);
 
@@ -61,7 +62,7 @@ $userLi.hover(function(){
 	.error(onError);
 }, function(){
 
-	$("."+userName).css("background-color", "lightgrey");
+	$("."+userName).css("background-color", "#E3F2FD");
 });
 
 // Error Handling for all Callbacks

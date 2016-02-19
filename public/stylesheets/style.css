@@ -91,61 +91,84 @@ ul {
 
 
 .flex-container {
-  display: flex;
   width: 100vw;
   height: 92vh;
+
+  display: flex;
+  /*justify-content: center;*/
   flex-flow: row wrap;
-  background-color: lightgrey;
-  align-content: stretch;
+  padding-top: 5em;
+  padding-right: 15%;
+  padding-left: 5%;
+  padding-bottom: 3%;
+
+  background-color: #0D47A1;
 }
 
+
 header {
+  background-color: #90CAF9;
+  width: 20%;
+  margin-bottom: 5%;
   order: 1;
 }
 
 #add-twote {
+  width: 50%;
+  margin-left: 10%;
+  margin-bottom: 3%;
+  margin-right: 10%;
   order: 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 30px;
+  background-color: #2196F3;
 }
 
 .flex-side{
+  width: 20%;
   order: 3;
+  background-color: #1565C0;
 }
 
 .flex-list {
+  margin-left: 10%;
+  width: 50%;
   order: 4;
-}
-
-.twote-tile{
-  background-color: #f4f4f4;
-  margin-right: 20%;
-  margin-left: 20%;
-  border-radius: 5px;
-}
-
-.twote-title {
-  text-align: center;
+  background-color: #E3F2FD;
 }
 
 .flex-container > * {
-  border-width: 2px;
-  border-style: solid;
-  border-color: #404040;
+  /*border: 2px solid black;*/
   border-radius: 5px;
-  box-shadow: 2px 2px 0px #888888;
+  box-shadow: 2px 2px 0px #00BCD4;
 }
 
 .flex-container li {
   margin: 20px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #404040;
   border-radius: 5px;
-  box-shadow: 2px 2px 2px #888888;
+  box-shadow: 1px 1px 1px #1976D2;
+}
+
+
+.new-twote-text{
+  border-radius: 5px;
+}
+
+.new-twote-button{
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+
 }
 
 
 
 
+/*========================*/
 
 /*templates*/
 
