@@ -20,7 +20,7 @@ describe("The app", function(){
 				if (err) return done(err);
 				done();
 			});
-	});
+	});	
 
 	it('should return 302 OK on POST /login', function(done){
 		request(app)
