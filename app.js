@@ -11,7 +11,6 @@ var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
 var User = require('./models/userModel');
 
-var auth = require('./auth');
 var index = require('./routes/index');
 
 var clientID = process.env.clientID || require('./auth').FACEBOOK_APP_ID;
