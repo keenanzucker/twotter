@@ -14,10 +14,15 @@ var User = require('./models/userModel');
 var auth = require('./auth');
 var index = require('./routes/index');
 
+var clientID = process.env.clientID || require('./auth').FACEBOOK_APP_ID;
+var clientSecret = process.env.clientSecret || require('./auth').FACEBOOK_APP_SECRET;
+var callbackURL = process.env.callbackURL || require('./auth').FACEBOOK_CALLBACK_URL;
+
+
 passport.use(new FacebookStrategy({
-    clientID: auth.FACEBOOK_APP_ID,
-    clientSecret: auth.FACEBOOK_APP_SECRET,
-    callbackURL: auth.FACEBOOK_CALLBACK_URL
+    clientID: clientID,
+    clientSecret: clientSecret,
+    callbackURL: callbackURL
   },
 
   function(accessToken, refreshToken, profile, done) {
