@@ -3,6 +3,7 @@ var express = require('express');
 var User = require('../models/userModel');
 var Twote = require('../models/twoteModel');
 
+//could do module.exports = {home: function(req, res), so on } to be a bit more concise
 var routes = {};
 
 routes.home = function(req, res){
@@ -19,6 +20,7 @@ routes.feed = function(req, res){
 
   console.log('FROM THE SERVER: ', req.user);
 
+  //fun fact, objectIds are all ordered by time because they are made from the timestamp when the document was first create
   Twote.find().sort({time:-1}).exec(function(err, twotes){
     if (err) console.log(err);
     else {
@@ -60,7 +62,8 @@ routes.newTwote = function(req, res){
   console.log(req.body.text);
   text = req.body.text;
   author = req.body.author;
-
+    
+  // Twote.create() creates and saves a twote in one function
   var twote = new Twote({
     text: text,
     author: author
@@ -88,6 +91,7 @@ routes.remove = function(req, res){
 }
 
 
+//you have to ensureAuthenticateds? one also in app.js
 routes.ensureAuthenticated = function(req, res) {
 
   res.send({username:req.user});

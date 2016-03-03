@@ -13,11 +13,12 @@ var User = require('./models/userModel');
 
 var index = require('./routes/index');
 
+//You should only require auth once
 var clientID = process.env.clientID || require('./auth').FACEBOOK_APP_ID;
 var clientSecret = process.env.clientSecret || require('./auth').FACEBOOK_APP_SECRET;
 var callbackURL = process.env.callbackURL || require('./auth').FACEBOOK_CALLBACK_URL;
 
-
+// I'd move this to a separate file
 passport.use(new FacebookStrategy({
     clientID: clientID,
     clientSecret: clientSecret,
@@ -63,6 +64,7 @@ passport.use(new LocalStrategy(
 	function(username, password, done){
 
 
+            //the indenting is weird here
 		if (username == ''){
     		console.log("NOT VALID");
   	} else {
@@ -71,6 +73,7 @@ passport.use(new LocalStrategy(
 
     	if(err) console.log(err);
     	if (!user) {
+                //User.create() creates and saves in one function
       		var user = new User({
         	username: username,
         	password: password,
