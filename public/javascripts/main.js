@@ -15,6 +15,7 @@ $('#logout').click(function() {
     location.reload();
 });
 
+//This was broken when I tried it
 $removeButton.click(function(event){
 
 	event.preventDefault();
@@ -88,6 +89,7 @@ $twoteForm.submit(function(event){
 	else {
 		$.post("new", formData)
 			.done(function(data, status){
+                                //Nice :D
 				var $newLi = $templateLi.clone();
 				$newLi.removeAttr('id');
 				$newLi.find('.twote').html(twote);
@@ -95,6 +97,7 @@ $twoteForm.submit(function(event){
 				$newLi.addClass(username);
 				$newLi.attr('id', data._id);
 				$twoteList.prepend($newLi);
+                                //remember to rebind click handlers, probably why delete is buggy
 
 			console.log("Twote Submitted!");
 		})

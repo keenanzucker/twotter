@@ -8,4 +8,5 @@ var twote = mongoose.Schema({
 
 }, {collection: "twotes"});
 
+//The first arguement here should be singular and you probably don't need to define the collection twice
 module.exports = mongoose.model("twotes", twote);
