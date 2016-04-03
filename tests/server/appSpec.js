@@ -5,11 +5,11 @@ describe("The app", function(){
 	it('should return 200 OK on GET /', function(done){
 		request(app)
 			.get('/')
-			.expect(200)
-			.end(function(err, res){
-				if (err) return done(err);
-				done();
-			});
+			.expect(200, done); // nicer shorthand -- you don't need the .end if that's all you're going to do with it
+			// .end(function(err, res){
+			// 	if (err) return done(err);
+			// 	done();
+			// });
 	});
 
 	it('should return 200 OK on GET /feed', function(done){
@@ -20,7 +20,7 @@ describe("The app", function(){
 				if (err) return done(err);
 				done();
 			});
-	});	
+	});
 
 	it('should return 302 OK on POST /login', function(done){
 		request(app)
@@ -42,6 +42,7 @@ describe("The app", function(){
 			});
 	});
 
+	// I haven't been able to get this one to work -- do you know why?
 	it('should return 200 OK on POST /highlight', function(done){
 		request(app)
 			.post('/highlight')
@@ -61,7 +62,4 @@ describe("The app", function(){
 				done();
 			});
 	});
-
-
-
-})
+});

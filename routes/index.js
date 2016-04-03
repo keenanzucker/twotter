@@ -17,8 +17,6 @@ routes.loginPage = function(req, res){
 
 routes.feed = function(req, res){
 
-  console.log('FROM THE SERVER: ', req.user);
-
   Twote.find().sort({time:-1}).exec(function(err, twotes){
     if (err) console.log(err);
     else {
@@ -66,7 +64,7 @@ routes.newTwote = function(req, res){
     author: author
   });
   console.log(twote);
-  
+
   twote.save(function(err, val){
     if (err) console.log(err);
     else{
