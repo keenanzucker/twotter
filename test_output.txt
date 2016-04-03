@@ -1,0 +1,47 @@
+Application running on port:  3000
+  The app
+GET / 200 30.142 ms - 1217
+    ✓ should return 200 OK on GET / (55ms)
+Showing Twotes and Users!
+undefined
+GET /feed 200 1225.010 ms - 280737
+    ✓ should return 200 OK on GET /feed (1233ms)
+POST /login 302 2.642 ms - 23
+    ✓ should return 302 OK on POST /login
+undefined
+{ time: Sat Apr 02 2016 22:13:14 GMT-0400 (EDT),
+  _id: 57007c3a46fb416e7427b5a9,
+  author: undefined,
+  text: undefined }
+New Twote: undefined By:undefined
+POST /new 200 169.274 ms - 76
+    ✓ should return 200 OK on POST /new (174ms)
+    1) should return 200 OK on POST /highlight
+undefined
+Twote with id undefined deleted.
+POST /remove 200 257.835 ms - 85
+    ✓ should return 200 OK on POST /remove (263ms)
+
+
+  5 passing (2s)
+  1 failing
+
+  1) The app should return 200 OK on POST /highlight:
+     Uncaught TypeError: Cannot read property 'username' of null
+      at Query.<anonymous> (routes/index.js:9:2244)
+      at node_modules/kareem/index.js:177:19
+      at node_modules/kareem/index.js:109:16
+
+
+
+=============================================================================
+Writing coverage object [/home/swalters/Classes/6-Spring-2016/feedback/keenan/coverage/coverage.json]
+Writing coverage reports at [/home/swalters/Classes/6-Spring-2016/feedback/keenan/coverage]
+=============================================================================
+
+=============================== Coverage summary ===============================
+Statements   : 66.44% ( 97/146 )
+Branches     : 36.84% ( 14/38 )
+Functions    : 46.15% ( 12/26 )
+Lines        : 71.85% ( 97/135 )
+================================================================================

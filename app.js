@@ -10,12 +10,12 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
 var User = require('./models/userModel');
-
 var index = require('./routes/index');
+var auth = require('./auth');
 
-var clientID = process.env.clientID || require('./auth').FACEBOOK_APP_ID;
-var clientSecret = process.env.clientSecret || require('./auth').FACEBOOK_APP_SECRET;
-var callbackURL = process.env.callbackURL || require('./auth').FACEBOOK_CALLBACK_URL;
+var clientID = process.env.clientID || auth.FACEBOOK_APP_ID;
+var clientSecret = process.env.clientSecret || auth.FACEBOOK_APP_SECRET;
+var callbackURL = process.env.callbackURL || auth.FACEBOOK_CALLBACK_URL;
 
 
 passport.use(new FacebookStrategy({
@@ -125,7 +125,7 @@ app.get('/auth/facebook/callback',
                                       failureRedirect: '/' })
 );
 
-app.post('/login', 
+app.post('/login',
   passport.authenticate('local', { failureRedirect: '/' }),
   function(req, res) {
     res.redirect('/feed');
@@ -139,6 +139,8 @@ app.get('/user', index.ensureAuthenticated);
 app.get('/logout', index.logout);
 app.post('/remove', index.remove);
 
+// if Austin didn't catch this when he graded your app -- username/password doesn't belong on github!
+// there are bots out there which scrape for things like this and try to exploit.
 mongoose.connect('mongodb://keenan:olinjs@ds033217.mongolab.com:33217/twotter', function(err){
 	if(err) console.log(err);
 });
